@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  hangout-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: hangout_secure_backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - JWT_SECRET=super_secret_hangout_key_change_in_production_123!
+      - JWT_REFRESH_SECRET=refresh_super_secret_key_change_in_production_456!
+      - CORS_WHITELIST=*
+    volumes:
+      - hangout-data:/usr/src/app
+    security_opt:
+      - no-new-privileges:true
+
+volumes:
+  hangout-data:
+    driver: local

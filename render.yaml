@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: hangout-lounge-backend
+    env: docker
+    dockerContext: backend
+    dockerfilePath: backend/Dockerfile
+    plan: free
+    envVars:
+      - key: PORT
+        value: 3000
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_REFRESH_SECRET
+        generateValue: true
+      - key: CORS_WHITELIST
+        value: "*"
+      - key: DB_PATH
+        value: /data/hangout.db
+      - key: UPLOAD_DIR
+        value: /data/uploads
+    disk:
+      name: hangout-disk
+      mountPath: /data
+      sizeGB: 1

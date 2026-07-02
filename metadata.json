@@ -1,0 +1,6 @@
+{
+  "name": "Hangout Room",
+  "description": "A real-time virtual hangout space for friends with synched video watch parties, group chat, and voice/video call rooms.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

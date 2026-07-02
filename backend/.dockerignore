@@ -1,0 +1,12 @@
+node_modules
+npm-debug.log*
+yarn-debug.log*
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+uploads
+.git
+.gitignore
+Dockerfile
+docker-compose.yml
