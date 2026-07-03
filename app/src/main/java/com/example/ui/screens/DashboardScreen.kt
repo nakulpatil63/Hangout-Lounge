@@ -539,12 +539,21 @@ fun DashboardScreen(
                     // Presets Button Row
                     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         Button(
+                            onClick = { tempServerUrl = "wss://hangout-lounge-backend.onrender.com" },
+                            colors = ButtonDefaults.buttonColors(containerColor = GlassIndigoAccent),
+                            shape = RoundedCornerShape(8.dp),
+                            modifier = Modifier.fillMaxWidth().height(36.dp)
+                        ) {
+                            Text("Preset 1: Render Production (Secure)", fontSize = 11.sp, color = GlassTextWhite)
+                        }
+
+                        Button(
                             onClick = { tempServerUrl = "wss://hangout-room-backend.glitch.me" },
                             colors = ButtonDefaults.buttonColors(containerColor = GlassFillMedium),
                             shape = RoundedCornerShape(8.dp),
                             modifier = Modifier.fillMaxWidth().height(36.dp)
                         ) {
-                            Text("Preset 1: Public Cloud (Glitch)", fontSize = 11.sp, color = GlassTextWhite)
+                            Text("Preset 2: Public Cloud (Glitch)", fontSize = 11.sp, color = GlassTextWhite)
                         }
 
                         Button(
@@ -553,7 +562,7 @@ fun DashboardScreen(
                             shape = RoundedCornerShape(8.dp),
                             modifier = Modifier.fillMaxWidth().height(36.dp)
                         ) {
-                            Text("Preset 2: Localhost Emulator (10.0.2.2:3000)", fontSize = 11.sp, color = GlassTextWhite)
+                            Text("Preset 3: Local Emulator (10.0.2.2:3000)", fontSize = 11.sp, color = GlassTextWhite)
                         }
                     }
                 }

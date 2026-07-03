@@ -27,7 +27,29 @@ Follow this checklist step-by-step to deploy the Hangout Lounge backend securely
 
 ---
 
-## ☁️ Phase 3: Deploy Backend on Render (Via Blueprint)
+## ☁️ Phase 3: Setup Supabase Database & Storage (Recommended for Scaling)
+The backend is equipped with automatic Supabase adapters. When configured, it stores all users, rooms, messages, bans, and media files directly in high-performance cloud databases instead of the local SQLite disk.
+
+### 1. Provision Tables in Supabase SQL Editor
+1. Create a free account at [Supabase.com](https://supabase.com/) and create a new project.
+2. Navigate to the **SQL Editor** tab in your Supabase project dashboard.
+3. Click **New Query** and copy-paste the entire contents of the `supabase_schema.sql` file (found at the root of this workspace).
+4. Click **Run**. This will create the required tables (`profiles`, `rooms`, `messages`, `friends`, `notifications`, `games`, `game_sessions`, `audit_logs`) and activate the automatic profile creation trigger for user sign-ups.
+
+### 2. Configure Storage Buckets
+1. In your Supabase dashboard, go to the **Storage** tab.
+2. Create a new public bucket named `chat-media`. This bucket will store all shared images and media files.
+3. Adjust permissions so public reads are allowed on the bucket if required, or let our backend handle secure pre-authenticated storage URL queries.
+
+### 3. Add Supabase Credentials to Render
+When setting up Render in the next step, make sure to add these environment variables:
+- `SUPABASE_URL`: Your Supabase Project API URL (found under Project Settings -> API).
+- `SUPABASE_PUBLISHABLE_KEY`: Your Supabase Publishable key.
+- `SUPABASE_SECRET_KEY`: Your Supabase Secret key (important for administrative profile updates and bypasses RLS safely).
+
+---
+
+## 🚀 Phase 4: Deploy Backend on Render (Via Blueprint)
 We have included a pre-configured `render.yaml` Blueprint specification. This automates the entire setup (Web Service, Docker Runtime, Environmental Variables, and Persistent Storage Disks).
 
 1. Log in to [Render Dashboard](https://dashboard.render.com/).
@@ -46,7 +68,7 @@ We have included a pre-configured `render.yaml` Blueprint specification. This au
 
 ---
 
-## 🧪 Phase 4: Verify Backend Health
+## 🧪 Phase 5: Verify Backend Health
 Once Render reports a successful deployment, verify the server is fully operational:
 
 - [ ] **Server Status**: Open your browser and navigate to `https://your-service.onrender.com/`. You should see the secure HTML welcoming landing or API notice.
@@ -59,7 +81,7 @@ Once Render reports a successful deployment, verify the server is fully operatio
 
 ---
 
-## 📱 Phase 5: Configure Android Client
+## 📱 Phase 6: Configure Android Client
 1. In the Android App, locate the Server settings in the main **Dashboard / Lobby Screen**.
 2. Tap the **Settings (Gear Icon)** in the top right.
 3. Enter your new production server URL:
@@ -72,7 +94,7 @@ Once Render reports a successful deployment, verify the server is fully operatio
 
 ---
 
-## 🛡️ Phase 6: Post-Deployment Maintenance & Security Audit
+## 🛡️ Phase 7: Post-Deployment Maintenance & Security Audit
 - [ ] **Monitor Server Logs**: Check the **Logs** tab on Render to observe handshakes, heartbeats, and rate limiter activities.
 - [ ] **Rotate JWT Secrets regularly**: You can trigger a redeployment in Render with newly rotated secrets under the **Environment** tab.
 - [ ] **Scale storage as needed**: If upload sizes grow, increase the persistent disk capacity in the **Disks** settings.

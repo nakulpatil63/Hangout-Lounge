@@ -66,6 +66,9 @@ android {
 secrets {
   propertiesFileName = ".env"
   defaultPropertiesFileName = ".env.example"
+  ignoreList.add("SUPABASE_URL")
+  ignoreList.add("SUPABASE_PUBLISHABLE_KEY")
+  ignoreList.add("SUPABASE_SECRET_KEY")
 }
 
 googleServices {
