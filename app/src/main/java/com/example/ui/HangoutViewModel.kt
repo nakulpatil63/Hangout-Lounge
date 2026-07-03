@@ -33,7 +33,7 @@ class HangoutViewModel(application: Application) : AndroidViewModel(application)
 
     // Server Configuration URL with standard fallback
     private val _serverUrl = MutableStateFlow(
-        sharedPrefs.getString("server_url", "wss://hangout-room-backend.glitch.me") ?: "wss://hangout-room-backend.glitch.me"
+       sharedPrefs.getString("server_url", "wss://hangout-lounge.onrender.com") ?: "wss://hangout-lounge.onrender.com"
     )
     val serverUrl: StateFlow<String> = _serverUrl.asStateFlow()
 

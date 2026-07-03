@@ -557,12 +557,12 @@ fun DashboardScreen(
                         }
 
                         Button(
-                            onClick = { tempServerUrl = "ws://10.0.2.2:3000" },
+                            onClick = { tempServerUrl ="wss://hangout-lounge.onrender.com"  },
                             colors = ButtonDefaults.buttonColors(containerColor = GlassFillMedium),
                             shape = RoundedCornerShape(8.dp),
                             modifier = Modifier.fillMaxWidth().height(36.dp)
                         ) {
-                            Text("Preset 3: Local Emulator (10.0.2.2:3000)", fontSize = 11.sp, color = GlassTextWhite)
+                            Text("Preset 3: Production Server", fontSize = 11.sp, color = GlassTextWhite)
                         }
                     }
                 }
